@@ -92,10 +92,27 @@ const importData = async () => {
         }
         await Product.insertMany(products);
 
-        console.log('Automated In-Memory Seeding: Data Imported!');
+        console.log('Seeder: Data Imported!');
     } catch (error) {
-        console.error(`Mock Seeding Error: ${error}`);
+        console.error(`Seeding Error: ${error}`);
     }
 };
 
-module.exports = { importData };
+// Only seed if database is empty (prevents wiping real data on restart)
+const seedIfEmpty = async () => {
+    try {
+        const userCount = await User.countDocuments();
+        const productCount = await Product.countDocuments();
+
+        if (userCount === 0 && productCount === 0) {
+            console.log('Empty database detected — seeding initial data...');
+            await importData();
+        } else {
+            console.log(`Database already has data (${userCount} users, ${productCount} products). Skipping seed.`);
+        }
+    } catch (error) {
+        console.error(`Seed check error: ${error}`);
+    }
+};
+
+module.exports = { importData, seedIfEmpty };
