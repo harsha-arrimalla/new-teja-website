@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'AURIA | Shopping Bag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cart-page {
+            padding: 60px 0;
+            min-height: 70vh;
+        }
+
+        .cart-title {
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .cart-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--gold-accent);
+            margin: 15px auto 0;
+        }
+
+        .cart-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cart-table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .item-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .item-img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            background: var(--bg-alt);
+        }
+
+        .item-details h4 {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .item-details p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .item-price,
+        .item-total {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .item-total {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            width: fit-content;
+            border-radius: 3px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .qty-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .qty-num {
+            padding: 0 10px;
+            font-size: 14px;
+        }
+
+        .remove-item {
+            color: var(--red-accent);
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: underline;
+        }
+
+        .cart-summary {
+            margin-top: 40px;
+            background: var(--bg-alt);
+            padding: 30px;
+            border-radius: 4px;
+            max-width: 400px;
+            margin-left: auto;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .empty-cart i {
+            font-size: 60px;
+            color: var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-table-header {
+                display: none;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .item-price {
+                display: none;
+            }
+
+            .item-total {
+                text-align: left;
+                margin-top: 10px;
+            }
+
+            .cart-summary {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Header -->
+    <header class="header">
+        <div class="container navbar-container">
+            <nav class="nav-links">
+                <a href="shop.html?category=jewellery">Jewellery</a>
+                <a href="shop.html?category=clothing">Featured</a>
+                <a href="shop.html">New Arrivals</a>
+            </nav>
+
+            <a href="index.html" class="brand-logo">L'AURIA</a>
+
+            <div class="nav-icons">
+                <a href="login.html"><i class="far fa-user"></i></a>
+                <a href="cart.html" style="color: var(--gold-accent);"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container cart-page">
+        <h1 class="cart-title">Your Shopping Bag</h1>
+
+        <div class="cart-container" id="cartItemsContainer">
+            <!-- Injected by JS -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                &copy; 2026 L'Auria India. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+        });
+
+        function renderCart() {
+            const container = document.getElementById('cartItemsContainer');
+
+            if (!cart || cart.length === 0) {
+                container.innerHTML = `
+          <div class="empty-cart">
+            <i class="fas fa-shopping-bag"></i>
+            <h3>Your bag is currently empty.</h3>
+            <p style="color: var(--text-secondary); margin: 15px 0 30px;">Discover our handcrafted collections to find something beautiful.</p>
+            <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+          </div>
+        `;
+                return;
+            }
+
+            let total = 0;
+            let html = `
+        <div class="cart-table-header">
+          <div>Product</div>
+          <div>Price</div>
+          <div>Quantity</div>
+          <div>Total</div>
+        </div>
+      `;
+
+            cart.forEach((item) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                const img = item.image || 'https://via.placeholder.com/100x133';
+
+                html += `
+          <div class="cart-item">
+            <div class="item-info">
+              <img src="${img}" alt="${item.name}" class="item-img">
+              <div class="item-details">
+                <h4>${item.name}</h4>
+                <p>Size: ${item.size || 'Standard'}</p>
+                <span class="remove-item" onclick="removeFromCart('${item.product}', '${item.size}')">Remove</span>
+              </div>
+            </div>
+            <div class="item-price">Rs. ${item.price.toLocaleString()}</div>
+            <div>
+              <div class="quantity-control">
+                <button class="qty-btn" onclick="updateQuantity('${item.product}', '${item.size}', -1)">-</button>
+                <span class="qty-num">${item.quantity}</span>
+                <button class="qty-btn" onclick="updateQuantity('${item.product}', '${item.size}', 1)">+</button>
+              </div>
+            </div>
+            <div class="item-total">Rs. ${itemTotal.toLocaleString()}</div>
+          </div>
+        `;
+            });
+
+            html += `
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>Rs. ${total.toLocaleString()}</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>Calculated at checkout</span>
+          </div>
+          <div class="summary-total">
+            <span>Estimated Total</span>
+            <span style="color: var(--red-accent);">Rs. ${total.toLocaleString()}</span>
+          </div>
+          <a href="checkout.html" class="btn btn-primary" style="width: 100%; margin-top: 25px;">Proceed to Checkout</a>
+        </div>
+      `;
+
+            container.innerHTML = html;
+        }
+
+        function updateQuantity(productId, size, change) {
+            const item = cart.find(i => i.product === productId && i.size === size);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId, size);
+                    return;
+                }
+                localStorage.setItem('luxury_cart', JSON.stringify(cart));
+                updateCartCount();
+                renderCart();
+            }
+        }
+    </script>
+</body>
+
+</html>

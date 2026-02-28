@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'AURIA | Admin Portal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            L'AURIA ADMIN
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" onclick="switchTab('dashboard')">
+                <i class="fas fa-chart-line"></i> Dashboard
+            </li>
+            <li class="nav-item" onclick="switchTab('products')">
+                <i class="fas fa-box"></i> Products
+            </li>
+            <li class="nav-item" onclick="switchTab('orders')">
+                <i class="fas fa-shopping-cart"></i> Orders
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="topbar">
+            <div>
+                <span id="adminName" style="margin-right: 1.5rem; font-weight: 500;"></span>
+                <button class="btn btn-primary" onclick="adminLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <!-- Dashboard Tab -->
+            <div id="tab-dashboard" class="tab-content">
+                <h2 class="section-title">Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div>
+                            <div style="color: var(--text-muted); margin-bottom:0.5rem">Total Revenue</div>
+                            <div class="stat-val" id="totalRevenue">₹0</div>
+                        </div>
+                        <i class="fas fa-rupee-sign fa-2x" style="color: var(--admin-accent)"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div>
+                            <div style="color: var(--text-muted); margin-bottom:0.5rem">Total Orders</div>
+                            <div class="stat-val" id="totalOrders">0</div>
+                        </div>
+                        <i class="fas fa-shopping-bag fa-2x" style="color: var(--admin-accent)"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div>
+                            <div style="color: var(--text-muted); margin-bottom:0.5rem">Total Products</div>
+                            <div class="stat-val" id="totalProducts">0</div>
+                        </div>
+                        <i class="fas fa-gem fa-2x" style="color: var(--admin-accent)"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Tab -->
+            <div id="tab-products" class="tab-content" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 class="section-title" style="margin:0">Product Management</h2>
+                    <button class="btn btn-primary" onclick="openProductModal()">+ Add Product</button>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="tab-orders" class="tab-content" style="display: none;">
+                <h2 class="section-title">Order Management</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <!-- Injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 1.5rem;" id="modalTitle">Add Product</h3>
+            <form id="productForm">
+                <input type="hidden" id="prodId">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="prodName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="prodCat" class="form-control">
+                        <option value="clothing">Clothing</option>
+                        <option value="jewellery">Jewellery</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" id="prodPrice" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input type="number" id="prodStock" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="prodDesc" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Sizes (comma separated, e.g. S,M,L,XL)</label>
+                    <input type="text" id="prodSizes" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Images</label>
+                    <input type="file" id="prodImages" class="form-control" multiple accept="image/*">
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Save Product</button>
+                    <button type="button" class="btn" style="flex: 1; border: 1px solid #ddd"
+                        onclick="closeProductModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

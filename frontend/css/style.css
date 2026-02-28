@@ -1,0 +1,440 @@
+/* 
+  L'AURIA - V3 TRADITIONAL E-COMMERCE
+  Inspired by premium Indian Brands (Rubans/Tarinika)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Bright/Clean E-commerce Palette */
+  --bg-main: #FFFFFF;
+  --bg-alt: #FAF9F6;
+  --text-primary: #1A1A1A;
+  --text-secondary: #5A5A5A;
+  --gold-accent: #B8860B;
+  /* Traditional darker gold */
+  --gold-light: #FDF9F1;
+  --border-color: #EAEAEA;
+  --red-accent: #862B2B;
+  /* Maroon hint for traditional feel */
+
+  --font-serif: 'Lora', serif;
+  --font-sans: 'Work Sans', sans-serif;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utilities */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-main);
+}
+
+.btn-primary:hover {
+  background-color: var(--gold-accent);
+}
+
+.btn-gold {
+  background-color: var(--gold-accent);
+  color: var(--bg-main);
+}
+
+.btn-gold:hover {
+  background-color: var(--text-primary);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-main);
+}
+
+/* Header & Navbar */
+.top-banner {
+  background-color: var(--gold-light);
+  color: var(--gold-accent);
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.header {
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 15px 0;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  flex: 1;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+  color: var(--gold-accent);
+}
+
+.brand-logo {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--red-accent);
+  text-align: center;
+  flex: 1;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.nav-icons a {
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+.nav-icons a:hover {
+  color: var(--gold-accent);
+}
+
+/* Product Card - Clean White */
+.product-card {
+  background: var(--bg-main);
+  border: 1px solid transparent;
+  padding-bottom: 15px;
+  transition: var(--transition);
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border-color);
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--bg-alt);
+  margin-bottom: 15px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.product-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-price {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  background: var(--bg-alt);
+  transition: var(--transition);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold-accent);
+  background: var(--bg-main);
+}
+
+/* Footer */
+footer {
+  background-color: var(--bg-alt);
+  padding: 60px 0 20px;
+  margin-top: 80px;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul a {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.footer-col ul a:hover {
+  color: var(--gold-accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+/* Badges */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--text-primary);
+  color: var(--bg-main);
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.badge-sale {
+  background: var(--red-accent);
+}
+
+/* Budget Cards & Hover Effects */
+.budget-card {
+  display: block;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.budget-card:hover {
+  transform: translateY(-8px);
+}
+
+.budget-card:hover h3 {
+  color: var(--gold-accent);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* WhatsApp Float Animation */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-float {
+  animation: pulse 2s infinite;
+}
+
+/* Product Card Improvements */
+.product-card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-image img {
+  border-radius: 0;
+}
+
+.add-to-cart-btn:hover {
+  background: var(--text-primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Announcement Strip */
+.announcement-strip marquee {
+  font-weight: 500;
+}
+
+/* Mobile Improvements */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 24px;
+  }
+  
+  .budget-card img {
+    height: 150px !important;
+  }
+  
+  .testimonial-card {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .brand-logo {
+    font-size: 22px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+}

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'AURIA | Secure Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .checkout-page {
+            padding: 60px 0;
+            min-height: 80vh;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 50px;
+        }
+
+        .checkout-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .checkout-form {
+            background: var(--bg-main);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .order-summary-box {
+            background: var(--bg-alt);
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .summary-img {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-info {
+            flex: 1;
+        }
+
+        .summary-info h5 {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .summary-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .summary-price {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .summary-calc {
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .calc-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .payment-notice {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-alt);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .payment-notice i {
+            color: #2ecc71;
+            font-size: 18px;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .order-summary-box {
+                order: -1;
+                position: static;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Header -->
+    <header class="header">
+        <div class="container navbar-container">
+            <nav class="nav-links">
+                <a href="shop.html?category=jewellery">Jewellery</a>
+                <a href="shop.html?category=clothing">Featured</a>
+                <a href="shop.html">New Arrivals</a>
+            </nav>
+
+            <a href="index.html" class="brand-logo">L'AURIA</a>
+
+            <div class="nav-icons">
+                <a href="login.html"><i class="far fa-user"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container checkout-page">
+        <div class="checkout-layout">
+            <!-- Left: Form -->
+            <div class="checkout-form">
+                <h2 class="checkout-title">Shipping Address</h2>
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label>Street Address</label>
+                        <input type="text" id="shipAddress" class="form-input" placeholder="House/Flat No., Street Name"
+                            required>
+                    </div>
+                    <div class="input-row">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" id="shipCity" class="form-input" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Postal Code</label>
+                            <input type="text" id="shipPostal" class="form-input" placeholder="PIN Code" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Country / Region</label>
+                        <input type="text" id="shipCountry" class="form-input" value="India" required>
+                    </div>
+
+                    <h2 class="checkout-title" style="margin-top: 40px;">Payment</h2>
+                    <div class="payment-notice">
+                        <i class="fas fa-lock"></i>
+                        <div>Payments are processed securely by Razorpay. We do not store your card details.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 16px;">
+                        Pay Now
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right: Summary -->
+            <div class="order-summary-box">
+                <h2 class="checkout-title" style="font-size: 18px; margin-top:0;">Order Summary</h2>
+                <div id="summaryItems"></div>
+
+                <div class="summary-calc">
+                    <div class="calc-row">
+                        <span>Subtotal</span>
+                        <span id="summarySubtotal">₹0</span>
+                    </div>
+                    <div class="calc-row">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="calc-total">
+                        <span>Total</span>
+                        <span id="summaryTotal" style="color: var(--red-accent);">₹0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center" style="padding: 20px 0; font-size: 12px; color: var(--text-secondary);">
+            &copy; 2026 L'Auria India. Secure Checkout via Razorpay.
+        </div>
+    </footer>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let totalAmount = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!cart || cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+            if (!currentUser) {
+                alert('Please login or create an account to proceed with checkout.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            renderSummary();
+        });
+
+        function renderSummary() {
+            const container = document.getElementById('summaryItems');
+            let html = '';
+            totalAmount = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+                const img = item.image || 'https://via.placeholder.com/60x80';
+
+                html += `
+          <div class="summary-item">
+            <img class="summary-img" src="${img}" alt="${item.name}">
+            <div class="summary-info">
+              <h5>${item.name}</h5>
+              <p>Size: ${item.size || 'OS'} | Qty: ${item.quantity}</p>
+            </div>
+            <div class="summary-price">Rs. ${itemTotal.toLocaleString()}</div>
+          </div>
+        `;
+            });
+
+            container.innerHTML = html;
+            document.getElementById('summarySubtotal').innerText = `Rs. ${totalAmount.toLocaleString()}`;
+            document.getElementById('summaryTotal').innerText = `Rs. ${totalAmount.toLocaleString()}`;
+        }
+
+        document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const shippingDetails = {
+                address: document.getElementById('shipAddress').value,
+                city: document.getElementById('shipCity').value,
+                postalCode: document.getElementById('shipPostal').value,
+                country: document.getElementById('shipCountry').value
+            };
+
+            try {
+                const orderRes = await fetch('/api/payment/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${currentUser.token}` },
+                    body: JSON.stringify({ amount: totalAmount })
+                });
+                const orderData = await orderRes.json();
+
+                const options = {
+                    key: 'test_key_id', // Replace with Razorpay actual test key in prod
+                    amount: orderData.amount,
+                    currency: "INR",
+                    name: "L'AURIA",
+                    description: "Premium Purchase",
+                    order_id: orderData.id,
+                    handler: async function (response) {
+                        const verifyRes = await fetch('/api/payment/verify', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${currentUser.token}` },
+                            body: JSON.stringify({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature
+                            })
+                        });
+                        const verifyData = await verifyRes.json();
+                        if (verifyData.status === 'success') {
+                            await fetch('/api/orders', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${currentUser.token}` },
+                                body: JSON.stringify({
+                                    orderItems: cart,
+                                    shippingDetails,
+                                    paymentId: response.razorpay_payment_id,
+                                    totalAmount
+                                })
+                            });
+                            localStorage.removeItem('luxury_cart');
+                            cart = [];
+                            window.location.href = 'dashboard.html';
+                        }
+                    },
+                    prefill: {
+                        name: currentUser.name,
+                        email: currentUser.email,
+                    },
+                    theme: { color: "#862B2B" } // Maroon theme to match V3
+                };
+                const rzp = new window.Razorpay(options);
+                rzp.open();
+
+            } catch (err) {
+                console.error(err);
+                alert('Payment initiation failed.');
+            }
+        });
+    </script>
+</body>
+
+</html>

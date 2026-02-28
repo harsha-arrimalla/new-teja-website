@@ -1,0 +1,6 @@
+node_modules/
+.env
+uploads/
+.mongo-tmp/
+*.log
+.DS_Store
