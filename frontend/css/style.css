@@ -504,7 +504,7 @@ footer {
   }
   
   h3 {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   /* Container Padding */
@@ -545,8 +545,8 @@ footer {
 
   /* Buttons */
   .btn {
-    padding: 10px 20px;
-    font-size: 12px;
+    padding: 12px 24px;
+    font-size: 13px;
   }
   
   /* Hero/Carousel */
@@ -572,49 +572,88 @@ footer {
     margin-bottom: 20px !important;
   }
   
-  /* Product Grids */
+  /* Category Circles - FIXED */
+  .category-scroll {
+    gap: 20px !important;
+    padding: 20px 10px !important;
+  }
+  
+  .circle-cat {
+    min-width: 110px !important;
+    width: 110px !important;
+  }
+  
+  .circle-img {
+    width: 90px !important;
+    height: 90px !important;
+    margin-bottom: 10px !important;
+    border-width: 2px !important;
+  }
+  
+  .circle-cat span {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* Product Grids - IMPROVED */
   .product-grid,
   .category-grid,
   .budget-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    gap: 15px !important;
   }
   
   .product-card {
-    padding: 10px;
+    padding: 0 !important;
+    padding-bottom: 12px !important;
   }
   
   .product-card img {
-    height: 180px !important;
+    height: 200px !important;
+    margin-bottom: 10px !important;
   }
   
   .product-card h3 {
-    font-size: 14px;
-    margin-top: 8px;
+    font-size: 15px !important;
+    margin-top: 10px !important;
+    padding: 0 10px !important;
+    line-height: 1.4 !important;
   }
   
   .product-card .price {
-    font-size: 15px;
-    margin-top: 5px;
+    font-size: 16px !important;
+    margin-top: 6px !important;
+    padding: 0 10px !important;
+    font-weight: 600 !important;
+  }
+  
+  .product-card .original-price {
+    font-size: 13px !important;
+  }
+  
+  .product-card .sale-badge {
+    font-size: 11px !important;
+    padding: 4px 8px !important;
   }
   
   /* Category Cards */
   .category-card img {
-    height: 150px !important;
+    height: 180px !important;
   }
   
   .category-card h3 {
-    font-size: 16px;
+    font-size: 17px !important;
+    padding: 12px !important;
   }
   
   /* Budget Section */
   .budget-card img {
-    height: 150px !important;
+    height: 160px !important;
   }
   
   .budget-card h3 {
-    font-size: 16px;
-    padding: 10px;
+    font-size: 16px !important;
+    padding: 12px !important;
   }
   
   /* Testimonials */
@@ -624,7 +663,8 @@ footer {
   }
   
   .testimonial-card p {
-    font-size: 13px;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
   }
   
   /* Wedding Section */
@@ -647,6 +687,19 @@ footer {
     height: 250px !important;
   }
   
+  /* Section Headers */
+  .section-header {
+    margin-bottom: 25px !important;
+  }
+  
+  .section-header h2 {
+    font-size: 24px !important;
+  }
+  
+  .section-header p {
+    font-size: 14px !important;
+  }
+  
   /* Footer */
   .footer-content {
     grid-template-columns: 1fr !important;
@@ -658,13 +711,14 @@ footer {
     margin-bottom: 15px;
   }
   
-  /* WhatsApp Float */
+  /* WhatsApp Float - FIXED POSITIONING */
   .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    bottom: 20px;
-    right: 15px;
-    font-size: 24px;
+    width: 55px !important;
+    height: 55px !important;
+    bottom: 80px !important;
+    right: 15px !important;
+    font-size: 26px !important;
+    z-index: 9997 !important;
   }
   
   /* Shop Page Filters */
@@ -711,32 +765,37 @@ footer {
   .form-group input,
   .form-group select,
   .form-group textarea {
-    font-size: 14px;
+    font-size: 16px !important;
   }
   
   /* Sections Spacing */
   section {
     padding: 40px 0;
   }
-  
-  .section-header {
-    margin-bottom: 25px;
-  }
-  
-  .section-header h2 {
-    font-size: 24px;
-  }
 }
 
 /* Small Mobile (480px and below) */
 @media (max-width: 480px) {
-  /* Single column for everything */
-  .product-grid,
-  .category-grid {
+  /* Single column for products */
+  .product-grid {
     grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
   
-  /* Keep 2 columns for budget only */
+  .product-card img {
+    height: 280px !important;
+  }
+  
+  .product-card h3 {
+    font-size: 16px !important;
+  }
+  
+  .product-card .price {
+    font-size: 18px !important;
+  }
+  
+  /* Keep 2 columns for categories and budget */
+  .category-grid,
   .budget-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
@@ -747,15 +806,26 @@ footer {
   }
   
   .hero-content h1 {
-    font-size: 24px !important;
-  }
-  
-  .product-card img {
-    height: 220px !important;
+    font-size: 28px !important;
   }
   
   .hero-carousel {
     height: 45vh !important;
     min-height: 300px !important;
+  }
+  
+  /* Category circles smaller */
+  .circle-cat {
+    min-width: 90px !important;
+    width: 90px !important;
+  }
+  
+  .circle-img {
+    width: 75px !important;
+    height: 75px !important;
+  }
+  
+  .circle-cat span {
+    font-size: 12px !important;
   }
 }
