@@ -199,6 +199,84 @@ img {
   color: var(--gold-accent);
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-primary);
+  background: none;
+  border: none;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background: var(--bg-main);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.mobile-menu.active {
+  left: 0;
+}
+
+.mobile-menu-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-menu-close {
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+}
+
+.mobile-menu-links {
+  padding: 20px;
+}
+
+.mobile-menu-links a {
+  display: block;
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu-links a:hover {
+  color: var(--gold-accent);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  display: none;
+}
+
+.mobile-menu-overlay.active {
+  display: block;
+}
+
 /* Product Card - Clean White */
 .product-card {
   background: var(--bg-main);
@@ -406,35 +484,278 @@ footer {
   font-weight: 500;
 }
 
-/* Mobile Improvements */
+/* ============================================
+   MOBILE RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet & Mobile (768px and below) */
 @media (max-width: 768px) {
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    bottom: 20px;
-    right: 20px;
+  /* Base Typography */
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  h2 {
     font-size: 24px;
   }
   
+  h3 {
+    font-size: 20px;
+  }
+  
+  /* Container Padding */
+  .container {
+    padding: 0 15px;
+  }
+  
+  /* Header & Navigation */
+  .top-banner {
+    font-size: 11px;
+    padding: 6px;
+  }
+  
+  .header {
+    padding: 12px 0;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .brand-logo {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+  
+  .nav-icons {
+    gap: 15px;
+  }
+  
+  .nav-icons a {
+    font-size: 16px;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  
+  /* Hero/Carousel */
+  .hero-carousel {
+    height: 50vh !important;
+    min-height: 350px !important;
+  }
+  
+  .hero-slide img {
+    object-position: center;
+  }
+  
+  .hero-content {
+    padding: 20px !important;
+  }
+  
+  .hero-content h1 {
+    font-size: 32px !important;
+  }
+  
+  .hero-content p {
+    font-size: 14px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Product Grids */
+  .product-grid,
+  .category-grid,
+  .budget-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .product-card {
+    padding: 10px;
+  }
+  
+  .product-card img {
+    height: 180px !important;
+  }
+  
+  .product-card h3 {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  .product-card .price {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+  
+  /* Category Cards */
+  .category-card img {
+    height: 150px !important;
+  }
+  
+  .category-card h3 {
+    font-size: 16px;
+  }
+  
+  /* Budget Section */
   .budget-card img {
     height: 150px !important;
   }
   
+  .budget-card h3 {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  /* Testimonials */
   .testimonial-card {
     margin-bottom: 15px;
+    padding: 20px;
+  }
+  
+  .testimonial-card p {
+    font-size: 13px;
+  }
+  
+  /* Wedding Section */
+  .wedding-section {
+    padding: 40px 0 !important;
+  }
+  
+  .wedding-content {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  
+  .wedding-text {
+    padding-right: 0 !important;
+    margin-bottom: 20px;
+  }
+  
+  .wedding-image {
+    width: 100%;
+    height: 250px !important;
+  }
+  
+  /* Footer */
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    text-align: center;
+  }
+  
+  .footer-column h3 {
+    margin-bottom: 15px;
+  }
+  
+  /* WhatsApp Float */
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 15px;
+    font-size: 24px;
+  }
+  
+  /* Shop Page Filters */
+  .filter-section {
+    margin-bottom: 20px;
+  }
+  
+  .filter-group h3 {
+    font-size: 14px;
+  }
+  
+  /* Product Detail Page */
+  .product-detail-container {
+    flex-direction: column !important;
+  }
+  
+  .product-images {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+  
+  .product-info {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  /* Cart & Checkout */
+  .cart-items {
+    padding: 15px;
+  }
+  
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+  
+  .cart-item img {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  /* Forms */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 14px;
+  }
+  
+  /* Sections Spacing */
+  section {
+    padding: 40px 0;
+  }
+  
+  .section-header {
+    margin-bottom: 25px;
+  }
+  
+  .section-header h2 {
+    font-size: 24px;
   }
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  /* Single column for everything */
+  .product-grid,
+  .category-grid {
+    grid-template-columns: 1fr !important;
   }
-
+  
+  /* Keep 2 columns for budget only */
+  .budget-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
   .brand-logo {
-    font-size: 22px;
+    font-size: 18px;
+    letter-spacing: 1px;
   }
-
-  .btn {
-    padding: 10px 20px;
+  
+  .hero-content h1 {
+    font-size: 24px !important;
+  }
+  
+  .product-card img {
+    height: 220px !important;
+  }
+  
+  .hero-carousel {
+    height: 45vh !important;
+    min-height: 300px !important;
   }
 }

@@ -108,14 +108,26 @@
             }
 
             .shop-sidebar {
-                display: flex;
-                gap: 20px;
-                overflow-x: auto;
+                display: none; /* Hide sidebar on mobile */
             }
-
-            .sidebar-widget {
-                min-width: 200px;
-                margin-bottom: 20px;
+            
+            .shop-top-banner h1 {
+                font-size: 24px;
+            }
+            
+            .shop-breadcrumbs {
+                font-size: 12px;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
@@ -131,6 +143,10 @@
     <!-- Main Header -->
     <header class="header">
         <div class="container navbar-container">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <nav class="nav-links">
                 <a href="shop.html?category=jewellery">Jewellery</a>
                 <a href="shop.html?category=clothing">Featured</a>
@@ -150,6 +166,25 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="brand-logo" style="font-size: 20px;">L'AURIA</span>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html?category=jewellery">Jewellery</a>
+            <a href="shop.html?category=clothing">Featured</a>
+            <a href="shop.html">New Arrivals</a>
+            <a href="login.html">My Account</a>
+            <a href="cart.html">Shopping Cart</a>
+        </nav>
+    </div>
 
     <section class="shop-top-banner">
         <div class="container">

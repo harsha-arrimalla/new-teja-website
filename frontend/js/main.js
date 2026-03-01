@@ -80,3 +80,16 @@ async function logout() {
     currentUser = null;
     window.location.href = 'index.html';
 }
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    
+    if (mobileMenu && overlay) {
+        mobileMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+}
