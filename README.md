@@ -1,4 +1,4 @@
-# L'AURIA - Premium Luxury E-Commerce Platform
+# Ourgia - Premium Luxury E-Commerce Platform
 
 A luxurious, high-fashion e-commerce platform built for clothing and fine jewellery. Implemented with a modern, minimal aesthetic featuring charcoal/ivory backgrounds and gold accents.
 
@@ -54,7 +54,7 @@ node backend/data/seeder.js
 ```
 
 **Test Admin Credentials:**
-- Email: `admin@lauria.com`
+- Email: `admin@ourgia.com`
 - Password: `password123`
 
 **Test Customer Credentials:**

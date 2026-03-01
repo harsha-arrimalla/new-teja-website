@@ -1,7 +1,7 @@
 # Website Enhancements - Inspired by Rubans & Tarinika
 
 ## Overview
-Your L'AURIA jewelry e-commerce website has been enhanced with premium features inspired by leading Indian jewelry brands Rubans.in and Tarinika.in.
+Your Ourgia jewelry e-commerce website has been enhanced with premium features inspired by leading Indian jewelry brands Rubans.in and Tarinika.in.
 
 ## ✨ New Features Added
 

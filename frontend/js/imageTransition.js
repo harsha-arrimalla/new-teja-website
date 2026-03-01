@@ -1,7 +1,7 @@
 /**
  * Repeating Image Transition Effect
  * Inspired by Codrops RepeatingImageTransition (MIT License)
- * Adapted for L'AURIA e-commerce product navigation
+ * Adapted for Ourgia e-commerce product navigation
  * 
  * When a product card is clicked, the image "flies" from the card
  * to fill the viewport through a series of repeating mover frames,

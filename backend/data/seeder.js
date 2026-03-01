@@ -5,8 +5,8 @@ const Order = require('../models/Order');
 const users = [
     {
         name: 'Admin User',
-        email: 'admin@lauria.com',
-        password: 'Admin@Lauria2024!',
+        email: 'admin@ourgia.com',
+        password: 'Admin@Ourgia2024!',
         role: 'admin',
     },
     {

@@ -1,7 +1,7 @@
 {
-  "name": "lauria-jewellery",
+  "name": "ourgia-jewellery",
   "version": "1.0.0",
-  "description": "L'AURIA - Premium Handcrafted Jewellery E-commerce",
+  "description": "Ourgia - Premium Handcrafted Jewellery E-commerce",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
